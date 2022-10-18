@@ -1,0 +1,63 @@
+using System.Net.Mail;
+
+
+internal class Program
+{ 
+    class Animal //on perus luokka(kantaluokka)
+    {
+        public string name; //eläimen erilaiset ominaisuudet ovat julkisija jotta voin käyttää niitä
+        public int age;             //nämä kolme name, age ja onnellisuus ovat parametreja
+        public float onnellisuus;
+
+        public void PrintBase()  //menetelmä (printbase=tulosta pohja) tulostaa kantaluokan arvot
+        {
+            Console.WriteLine("Name; " + name);
+            Console.WriteLine("Age: " + age);
+            Console.WriteLine("Onnellisuus: " + onnellisuus);
+        }
+    }
+    class Dog : Animal /*luotu luokka koira, perityjä. Perustuu kantaluokan pohjaan eli Animal/Eläin ja 
+                        * käyttää sen parametreja mukaan luettuna myös menetelmää*/
+    {
+        public int pistelaskenta; /*tämä antaa mahdollisuuden tehdä arvojen lisäosia ja menetelmijä. En oiken viel käsitä tätä*/
+
+        public void Haukkuu()
+        {
+            Console.WriteLine("Fauh,fauh!");
+            base.onnellisuus += 0.1f; //base on pohja ja nousee o,1:llä
+        }
+    }
+    class Cat : Animal //johdettu luokka nimeltä kissa, samalla tavalla perustuu kuin koira luokka 
+    {
+        public float cuteness;//suloisuus
+
+        public void Miauu()
+        {
+            Console.WriteLine("MIAUU!");
+        }
+    }
+    public static void Main(string[] args)
+    {  //instantiointi
+        Dog taplikas = new Dog();/*esiintymän luominen nimeltään päplikäs*/
+        taplikas.name = "Taplikas";/*joukko erilaisia parametreja*/
+        taplikas.age = 4;
+        taplikas.onnellisuus = 0.8f;//miksi f?
+        taplikas.pistelaskenta = 25;
+        taplikas.PrintBase();//tulostaa tämän täplikkään pohjan
+        taplikas.Haukkuu(); //tulostaa hänen tilansa Fauh,fauh!
+        Console.WriteLine("Uusi onnellisuus: " + taplikas.onnellisuus);
+
+        Console.WriteLine();
+
+        Cat villi = new Cat();
+        villi.name = "Villi";
+        villi.age = 13;
+        villi.onnellisuus = 0.3f;
+        villi.cuteness = 0.4f;
+        villi.PrintBase();
+        villi.Miauu();
+
+
+        Console.ReadKey();
+    }   
+}   
